@@ -19,7 +19,8 @@ app.use(express.static('public'));
 app.get("/", function (req, res) {
   var reg =/(^[0-9.]+(?=,))/
   //var reg2 =/(?<=\().+?(?=\))/
-  var b =req.rawHeaders[15].split("(")[1].split(")")[0]?req.rawHeaders[15].split("(")[1].split(")")[0]:req.rawHeaders[17].split("(")[1].split(")")[0]
+  var b =req.rawHeaders[15].split("(")[1]
+  var c = b.split(")")[0]||req.rawHeaders[17].split("(")[1].split(")")[0]
   var a = req.rawHeaders[3].match(reg)
   //var b = req.rawHeaders[15].match(reg2)||req.rawHeaders[17].match(reg2)
  // var ipAddress = req.rawHeaders[3].split(",")[0]
@@ -28,7 +29,7 @@ app.get("/", function (req, res) {
   language=req.rawHeaders[25].split(",")[0]
   }
   
-    res.send({ipAddress:a[0], software:b, language})
+    res.send({ipAddress:a[0], software:c, language})
     });
 
 // listen for requests :)
