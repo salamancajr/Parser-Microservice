@@ -43,7 +43,7 @@ app.get("/", function (req, res) {
 //   }
   
    // res.send({ipAddress:a[0], software:c, language})
-  res.send({info:req.rawHeaders})
+  res.send({info:req.rawHeaders[3].split(":")[0].split(",")[0]})
     });
 
 // listen for requests :)
