@@ -12,11 +12,17 @@ var app = express();
 
 // http://expressjs.com/en/starter/static-files.html
 app.use(express.static('public'));
+//var reg =/(^[0-9.]+(?=,))/
+
 
 // http://expressjs.com/en/starter/basic-routing.html
 app.get("/", function (req, res) {
+ // var reg =/(^[0-9.]+(?=,))/
+  //var a = req.rawHeaders[3].replace(reg, "$1")
   
-    res.send({ipAddress:req.rawHeaders[3], software:req.rawHeaders[15], language:req.rawHeaders[23]})
+  var ipAddress = req.rawHeaders[3].split(",") 
+  ipAddress =ipAddress[0]
+    res.send({ipAddress, software:req.rawHeaders[15], language:req.rawHeaders[23]})
     });
 
 // listen for requests :)
