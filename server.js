@@ -20,10 +20,10 @@ app.get("/", function (req, res) {
   var reg =/(^[0-9.]+(?=,))/
   var reg2 =/(?<=\().+?(?=\))/
   var a = req.rawHeaders[3].match(reg)
-  var b = req.rawHeaders[15].match(reg2)
+  var b = req.rawHeaders[15].match(reg2)||req.rawHeaders[17].match(reg2)
  // var ipAddress = req.rawHeaders[3].split(",")[0]
-  var language=req.rawHeaders[23].split(",")
-    res.send({ipAddress:a, software:req.rawHeaders, language})
+  var language=req.rawHeaders[23].split(",")[0]
+    res.send({ipAddress:a[0], software:b[0], language})
     });
 
 // listen for requests :)
