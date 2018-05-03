@@ -17,12 +17,13 @@ app.use(express.static('public'));
 
 // http://expressjs.com/en/starter/basic-routing.html
 app.get("/", function (req, res) {
- // var reg =/(^[0-9.]+(?=,))/
-  //var a = req.rawHeaders[3].replace(reg, "$1")
-  
-  var ipAddress = req.rawHeaders[3].split(",") 
-  ipAddress =ipAddress[0]
-    res.send({ipAddress, software:req.rawHeaders[15], language:req.rawHeaders[23]})
+  var reg =/(^[0-9.]+(?=,))/
+  var reg2 =/\(.+\)/
+  var a = req.rawHeaders[3].match(reg)
+  var b = req.rawHeaders[15].match(reg2)
+ // var ipAddress = req.rawHeaders[3].split(",")[0]
+  var language=req.rawHeaders[23].split(",")[0]
+    res.send({ipAddress:a[0], software:req.rawHeaders[15], language})
     });
 
 // listen for requests :)
