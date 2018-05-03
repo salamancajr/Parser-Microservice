@@ -23,6 +23,10 @@ app.get("/", function (req, res) {
   var b = req.rawHeaders[15].match(reg2)||req.rawHeaders[17].match(reg2)
  // var ipAddress = req.rawHeaders[3].split(",")[0]
   var language=req.rawHeaders[23].split(",")[0]
+  if(language=="gzip"){
+  language=req.rawHeaders[25].split(",")[0]
+  }
+  
     res.send({ipAddress:a[0], software:b[0], language})
     });
 
